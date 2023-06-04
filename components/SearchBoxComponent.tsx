@@ -3,7 +3,7 @@
 import {RxCross2} from "react-icons/rx";
 import {BsFillMicFill} from "react-icons/bs";
 import {AiOutlineSearch} from "react-icons/ai";
-import {useRouter, useSearchParams} from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {ChangeEvent, useState} from "react";
 
 const SearchBoxComponent = () => {
@@ -11,7 +11,7 @@ const SearchBoxComponent = () => {
     const searchTerm = searchParams.get('searchTerm');
     const [term, setTerm] = useState(searchTerm || "");
     const router = useRouter();
-
+    const pathname = usePathname();
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTerm(e.target.value);
@@ -24,7 +24,7 @@ const SearchBoxComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (!term) return;
-        router.push(`/search/web?searchTerm=${term}`);
+        router.push(`${pathname}?searchTerm=${term}`);
     }
 
     return (
