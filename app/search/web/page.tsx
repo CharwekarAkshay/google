@@ -19,6 +19,7 @@ const SearchWeb = async (props: SearchWebProps) => {
     `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${CONTEXT_KEY}&q=${searchTerm}&start=${startIndex}`
   );
 
+
   if (!response.ok) throw Error(response.statusText);
 
   const data: Search = await response.json();
